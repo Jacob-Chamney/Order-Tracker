@@ -6,7 +6,7 @@ let selectedRow = null;
 let isEditing = false;
 
 //Submit OrderData To DB
-document.querySelector('form').addEventListener('submit', (e) => {
+document.querySelector('orderForm').addEventListener('submit', (e) => {
   e.preventDefault();
 
 const formData = {
@@ -23,7 +23,20 @@ if(isEditing) {
   } else {
     ipcRenderer.send('insert-order', formData);
   }
-console.log(formData);
+document.querySelector('orderForm').reset();
+document.getElementById('submit-btn').value = "Input Order";
+document.getElementById('edit-btn').style.display = 'none';
+document.getElementById('delete-btn').style.display = 'none';
+
+isEditing = false;
+
+  if(selectedRow) {
+    selectedRow.classList.remove('selected');
+    selectedRow = null;
+  }
+  selectedOrder = null;
+
+  console.log(formData);
 });
 //End Submit OrderData To DB
 
@@ -83,9 +96,9 @@ document.getElementById('edit-btn').addEventListener('click', () => {
   document.getElementById('paymentmethod').value = selectedOrder.PaymentMethod;
   document.getElementById('date').value = selectedOrder.OrderDate;
 
-  document.getElementById('submit-btn').style.display = 'none';
+  document.getElementById('edit-btn').style.display = 'none';
   document.getElementById('delete-btn').style.display = 'none';
-  document.getElementById('edit-btn').textContent = 'Update';
+  document.getElementById('submit-btn').value = 'Update';
   isEditing = true;
 });
 //End Edit Order
