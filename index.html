@@ -9,21 +9,21 @@
   <h1>Order Tracker</h1>
   <form id="orderForm">
     <label for="fname">First Name:</label><br>
-      <input type="text" id="fname" name="fname"><br>
+      <input type="text" id="fname" name="fname" required><br>
     <label for="lname">Last Name:</label><br>
-      <input type="text" id="lname" name="lname"><br>
+      <input type="text" id="lname" name="lname" required><br>
     <label for="orderdesc">Order Description:</label><br>
-      <textarea id="orderdesc" name="orderdesc"></textarea><br>
+      <textarea id="orderdesc" name="orderdesc" required></textarea><br>
     <label for="orderprice">Order Price:</label><br>
-      <input type="number" step="0.01" id="orderprice" name="orderprice"><br>
+      $<input type="number" step="0.01" id="orderprice" name="orderprice" required><br>
     <label for="paymentmethod">Payment Method:</label><br>
-      <select name="paymentmethod" id="paymentmethod">
+      <select name="paymentmethod" id="paymentmethod" required>
         <option value="" selected="selected" hidden="hidden">Select Method</option>
         <option value="cashapp">CashApp</option>
         <option value="venmo">Venmo</option>
       </select><br>
     <label for="date">Date:</label><br>
-      <input type="date" id="date" name="date"><br>
+      <input type="date" id="date" name="date" required><br>
     <input type="submit" value="Input Order" id="submit-btn">
     <button type="button" id="edit-btn" style="display: none;">Edit</button>
     <button type="button" id="delete-btn" style="display: none;">Delete</button>

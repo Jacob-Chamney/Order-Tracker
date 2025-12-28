@@ -23,19 +23,6 @@ if(isEditing) {
   } else {
     ipcRenderer.send('insert-order', formData);
   }
-
-isEditing = false;
-document.getElementById('orderForm').reset();
-document.getElementById('submit-btn').value = "Input Order";
-document.getElementById('edit-btn').style.display = 'none';
-document.getElementById('delete-btn').style.display = 'none';
-
-  if(selectedRow) {
-    selectedRow.classList.remove('selected');
-    selectedRow = null;
-  }
-  selectedOrder = null;
-
   console.log(formData);
 });
 //End Submit OrderData To DB
@@ -63,7 +50,7 @@ ipcRenderer.on('load-orders', (event, orders) => {
     row.appendChild(orderCell);
     
     const totalCell = document.createElement('td');
-    totalCell.textContent = order.OrderPrice;
+    totalCell.textContent = '$' + order.OrderPrice;
     row.appendChild(totalCell);
     
     const paymenttypeCell = document.createElement('td');
@@ -83,6 +70,17 @@ ipcRenderer.on('load-orders', (event, orders) => {
 
     tbody.appendChild(row);
   });
+  document.getElementById('orderForm').reset();
+  document.getElementById('submit-btn').value = "Input Order";
+  document.getElementById('edit-btn').style.display = 'none';
+  document.getElementById('delete-btn').style.display = 'none';
+  isEditing = false;
+  
+  if(selectedRow) {
+    selectedRow.classList.remove('selected');
+  }
+  selectedRow = null;
+  selectedOrder = null;
   console.log('Recieved Orders:', orders);
 });
 //End Recieve OrderData
