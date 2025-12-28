@@ -12,8 +12,7 @@
     "productName": "Order Tracker",
     "npmRebuild": false,
     "win": {
-      "target": "nsis",
-      "signAndEditExecutable": false
+      "target": "portable"
     },
     "files": [
       "main.js",
