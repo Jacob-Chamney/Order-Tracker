@@ -1,3 +1,5 @@
+/* Custom Modern Graphite Theme */
+
 :root {
   --bg-dark: #121212;
   --sidebar-glass: rgba(30, 30, 30, 0.8);
@@ -6,8 +8,9 @@
   --text-pure: #ffffff;
   --text-muted: #a0a0a0;
   --accent-gray: #333333;
-  --hover-gray: #444444;
   --delete-red: #ff4d4d;
+  --insert-green: #4ade80;
+  --edit-yellow: #facc15;
 }
 
 * {
@@ -92,35 +95,52 @@ input:focus, textarea:focus, select:focus {
 /* Button Group */
 .button-group {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-top: 10px;
-}
-
-.button-group button,
-.button-group input[type="submit"] {
-  flex: 1;
-  margin-top: 0;
 }
 
 button, input[type="submit"] {
   padding: 12px;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: none;
-  background-color: #ffffff;
-  color: #000000;
+  border: 1px solid transparent;
+  background-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-button:hover, input[type="submit"]:hover {
-  background-color: #cccccc;
+/* Submit Button - Green Theme */
+input[type="submit"] {
+  color: var(--insert-green);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+input[type="submit"]:hover {
+  background-color: var(--insert-green);
+  color: #000000;
+  border-color: var(--insert-green);
   transform: translateY(-1px);
 }
 
+/* Edit Button - Yellow Theme */
+#edit-btn {
+  color: var(--edit-yellow);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+#edit-btn:hover {
+  background-color: var(--edit-yellow);
+  color: #000000;
+  border-color: var(--edit-yellow);
+  transform: translateY(-1px);
+}
+
+/* Delete Button - Red Theme */
 #delete-btn {
-  background-color: transparent;
   color: var(--delete-red);
   border: 1px solid rgba(255, 77, 77, 0.3);
 }
@@ -129,6 +149,7 @@ button:hover, input[type="submit"]:hover {
   background-color: var(--delete-red);
   color: #ffffff;
   border-color: var(--delete-red);
+  transform: translateY(-1px);
 }
 
 /* Table Section */
@@ -173,24 +194,28 @@ td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 14px;
   color: var(--text-pure);
+  transition: all 0.2s ease;
 }
 
 tbody tr:last-child td {
   border-bottom: none;
 }
 
-tbody tr:hover {
+tbody tr:hover td {
   background-color: #252525;
   cursor: pointer;
 }
 
-tbody tr.selected {
-  background-color: #333333;
+/* Enhanced Selection Highlighting */
+tbody tr.selected td {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
-tbody tr.selected td {
-  color: #ffffff;
-  font-weight: 600;
+tbody tr.selected td:first-child {
+  border-left: 4px solid #ffffff; /* Strong visual indicator on the left */
+  padding-left: 12px;
 }
 
 /* Scrollbar Styling */
