@@ -5,17 +5,26 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --win --x64",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win --x64",
+    "build:mac": "electron-builder --mac",
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "appId": "com.jacobchamney.ordertracker",
     "productName": "Order Tracker",
     "npmRebuild": false,
-    "forceCodeSigning": false,
+    "forceCodeSignature": false,
     "win": {
       "target": "portable",
       "verifyUpdateCodeSignature": false
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.business"
     },
     "files": [
       "main.js",
