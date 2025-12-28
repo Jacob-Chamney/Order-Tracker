@@ -8,6 +8,7 @@
     "build": "electron-builder",
     "build:win": "electron-builder --win --x64",
     "build:mac": "electron-builder --mac",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
@@ -15,6 +16,10 @@
     "productName": "Order Tracker",
     "npmRebuild": false,
     "forceCodeSigning": false,
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node"
+    ],
     "win": {
       "target": "portable",
       "verifyUpdateCodeSignature": false
@@ -42,6 +47,7 @@
     "better-sqlite3": "^11.8.1"
   },
   "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
     "electron": "30.5.1",
     "electron-builder": "^26.0.12"
   }
