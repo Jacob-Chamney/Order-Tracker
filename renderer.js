@@ -6,7 +6,7 @@ let selectedRow = null;
 let isEditing = false;
 
 //Submit OrderData To DB
-document.querySelector('orderForm').addEventListener('submit', (e) => {
+document.getElementById('orderForm').addEventListener('submit', (e) => {
   e.preventDefault();
 
 const formData = {
@@ -23,12 +23,12 @@ if(isEditing) {
   } else {
     ipcRenderer.send('insert-order', formData);
   }
-document.querySelector('orderForm').reset();
+
+isEditing = false;
+document.getElementById('orderForm').reset();
 document.getElementById('submit-btn').value = "Input Order";
 document.getElementById('edit-btn').style.display = 'none';
 document.getElementById('delete-btn').style.display = 'none';
-
-isEditing = false;
 
   if(selectedRow) {
     selectedRow.classList.remove('selected');
