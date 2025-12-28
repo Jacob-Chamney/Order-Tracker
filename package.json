@@ -13,8 +13,7 @@
     "npmRebuild": false,
     "win": {
       "target": "nsis",
-      "icon": "build/icon.ico",
-      "sign": false
+      "signingHashAlgorithms": []
     },
     "files": [
       "main.js",
