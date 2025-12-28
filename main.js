@@ -82,6 +82,23 @@ update.run(
   console.log('Updated order data:', orderData);
 });
 
+//Delete Handler
+ipcMain.on('delete-order', (event, OrderID) => {
+const deleteOrder = db.prepare(`
+  DELETE
+  FROM Orders
+  WHERE OrderID = ?
+`);
+  deleteOrder.run(OrderID);
+  const orders = db.prepare(`
+  SELECT *
+  FROM Orders
+  ORDER BY OrderDate DESC
+`).all();
+  event.sender.send('load-orders', orders);
+  console.log('Deleted order:', OrderID);
+});
+
 //Create Window
 const createWindow = () => {
   const win = new BrowserWindow({

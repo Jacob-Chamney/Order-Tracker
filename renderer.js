@@ -102,3 +102,12 @@ document.getElementById('edit-btn').addEventListener('click', () => {
   isEditing = true;
 });
 //End Edit Order
+
+//Delete Order
+document.getElementById('delete-btn').addEventListener('click', () => {
+const confirmed = confirm('Are you sure you want to DELETE this order?');
+if(confirmed) {
+    ipcRenderer.send('delete-order', selectedOrder.OrderID);
+  }
+});
+//End Delete Order
