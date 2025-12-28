@@ -1,211 +1,218 @@
 :root {
-    --primary-brown: #957C62;
-    --accent-peach: #E2B59A;
-    --soft-cream: #FFE1AF;
-    --active-red: rgb(183, 116, 102);
-    --glass-white: rgba(255, 255, 255, 0.95);
-    --shadow: 0 8px 32px rgba(149, 124, 98, 0.2);
+  --bg-color: #0f172a;
+  --sidebar-bg: rgba(30, 41, 59, 0.7);
+  --card-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+  --accent-gold: #fbbf24;
+  --accent-gold-hover: #f59e0b;
+  --danger: #ef4444;
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.3s ease; /* Smooth transitions for everything */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #FFE1AF 0%, #E2B59A 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 40px;
-    color: #4a3f35;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(251, 191, 36, 0.05) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, rgba(251, 191, 36, 0.05) 0, transparent 50%);
+  color: var(--text-main);
+  min-height: 100vh;
+  padding: 30px;
+  overflow-x: hidden;
 }
 
+/* Header */
 h1 {
-    text-align: left;
-    margin-bottom: 30px;
-    color: var(--primary-brown);
-    font-size: 38px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  letter-spacing: -0.025em;
+  background: linear-gradient(to right, #fff, var(--accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Container now fills the screen and centers content on ultra-wide displays */
+/* Container set to full width */
 .container {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 40px;
-    max-width: 1600px;
-    margin: 0 auto;
-    align-items: start;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+  width: 100%;
+  margin: 0;
 }
 
-/* Floating Sidebar Section */
+/* Floating Sidebar */
 .form-section {
-    padding: 25px;
-    background: var(--glass-white);
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
-    border-radius: 20px;
-    position: sticky;
-    top: 40px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  position: sticky;
+  top: 30px;
+  height: fit-content;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.form-section h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: var(--primary-brown);
-    border-bottom: 2px solid var(--soft-cream);
-    padding-bottom: 10px;
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-left: 4px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.1);
+}
+
+/* Button Group */
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+input[type="submit"], button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+}
+
+input[type="submit"] {
+  background: var(--accent-gold);
+  color: #000;
+}
+
+input[type="submit"]:hover {
+  background: var(--accent-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.3);
+}
+
+#edit-btn {
+  background: var(--card-bg);
+  color: #fff;
+  border: 1px solid var(--glass-border);
+}
+
+#delete-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+#delete-btn:hover {
+  background: var(--danger);
+  color: #fff;
 }
 
 /* Table Section */
 .table-section {
-    width: 100%;
-    animation: fadeIn 0.8s ease-out;
+  width: 100%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  font-weight: 700;
 }
 
-label {
-    font-weight: 700;
-    color: var(--primary-brown);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.orders-table {
+  background: var(--card-bg);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-input, textarea, select {
-    padding: 12px;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    font-size: 14px;
-    background-color: var(--soft-cream);
-    color: var(--primary-brown);
-}
-
-input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: var(--accent-peach);
-    background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(226, 181, 154, 0.2);
-}
-
-/* Buttons Styling */
-button, input[type="submit"] {
-    padding: 12px;
-    background-color: var(--active-red);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    box-shadow: 0 4px 6px rgba(183, 116, 102, 0.2);
-}
-
-button:hover, input[type="submit"]:hover {
-    background-color: var(--primary-brown);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-.button-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-#delete-btn {
-    background-color: #6d5d4d;
-}
-
-#delete-btn:hover {
-    background-color: #d9534f; /* Subtle red for delete on hover */
-}
-
-/* Table Modernization */
 table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 8px; /* Creates the "card" look for rows */
-    background-color: transparent;
-    box-shadow: none;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th {
-    padding: 15px;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: var(--primary-brown);
-    text-align: center;
-    border: none;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 20px;
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 td {
-    padding: 18px;
-    background-color: white;
-    font-size: 14px;
-    text-align: center;
-    border: none;
-}
-
-/* Rounded corners for the "row cards" */
-td:first-child { border-radius: 12px 0 0 12px; }
-td:last-child { border-radius: 0 12px 12px 0; }
-
-tbody tr {
-    box-shadow: 0 2px 10px rgba(149, 124, 98, 0.1);
+  padding: 20px;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background 0.2s ease;
 }
 
 tbody tr:hover {
-    transform: scale(1.01);
-    z-index: 10;
-    box-shadow: 0 5px 15px rgba(149, 124, 98, 0.2);
-    cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
 }
 
-tbody tr:hover td {
-    background-color: var(--soft-cream);
+tbody tr.selected {
+  background: rgba(251, 191, 36, 0.05);
 }
 
 tbody tr.selected td {
-    background-color: var(--accent-peach);
-    color: white;
-    font-weight: bold;
+  color: var(--accent-gold);
+  border-left: 2px solid var(--accent-gold);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 1000px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-section {
-        position: relative;
-        top: 0;
-        width: 100%;
-    }
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sidebar-bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
 }
