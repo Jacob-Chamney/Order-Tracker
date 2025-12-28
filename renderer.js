@@ -71,7 +71,7 @@ ipcRenderer.on('load-orders', (event, orders) => {
     tbody.appendChild(row);
   });
   document.getElementById('orderForm').reset();
-  document.getElementById('submit-btn').value = "Input Order";
+  document.getElementById('submit-btn').value = "Input";
   document.getElementById('edit-btn').style.display = 'none';
   document.getElementById('delete-btn').style.display = 'none';
   isEditing = false;
