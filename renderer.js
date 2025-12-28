@@ -57,7 +57,8 @@ ipcRenderer.on('load-orders', (event, orders) => {
     paymenttypeCell.textContent = order.PaymentMethod;
     row.appendChild(paymenttypeCell);
 
-    row.addEventListener('click', () => {
+    row.addEventListener('click', (e) => {
+      e.stopPropagation();
       if(selectedRow) {
         selectedRow.classList.remove('selected');
       }
@@ -70,17 +71,7 @@ ipcRenderer.on('load-orders', (event, orders) => {
 
     tbody.appendChild(row);
   });
-  document.getElementById('orderForm').reset();
-  document.getElementById('submit-btn').value = "Input";
-  document.getElementById('edit-btn').style.display = 'none';
-  document.getElementById('delete-btn').style.display = 'none';
-  isEditing = false;
-  
-  if(selectedRow) {
-    selectedRow.classList.remove('selected');
-  }
-  selectedRow = null;
-  selectedOrder = null;
+  clearSelection();
   console.log('Recieved Orders:', orders);
 });
 //End Recieve OrderData
@@ -109,3 +100,28 @@ if(confirmed) {
   }
 });
 //End Delete Order
+
+//Clear Selection
+const clearSelection = () => {
+  if (selectedRow) {
+    selectedRow.classList.remove('selected');
+  }
+  selectedRow = null;
+  selectedOrder = null;
+  isEditing = false;
+  
+  document.getElementById('edit-btn').style.display = 'none';
+  document.getElementById('delete-btn').style.display = 'none';
+  document.getElementById('submit-btn').value = "Input";
+  document.getElementById('orderForm').reset();
+};
+document.addEventListener('click', (e) => {
+  const isClickInsideTable = document.getElementById('orders-table').contains(e.target);
+  const isClickInsideForm = document.getElementById('orderForm').contains(e.target);
+
+  if (!isClickInsideTable && !isClickInsideForm) {
+    clearSelection();
+  }
+});
+//End Clear Section
+
