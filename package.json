@@ -11,8 +11,10 @@
     "appId": "com.jacobchamney.ordertracker",
     "productName": "Order Tracker",
     "npmRebuild": false,
+    "forceCodeSigning": false,
     "win": {
-      "target": "portable"
+      "target": "portable",
+      "verifyUpdateCodeSignature": false
     },
     "files": [
       "main.js",
